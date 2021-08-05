@@ -1,6 +1,13 @@
 const express = require('express');
 const app = express();
 
+app.get('/adminlogin', (req, res) => {
+    res.send({
+        hi: "there",
+        how: "are you"
+    });
+});
+
 app.get('/', (req, res) => {
     res.send({
         hi: "there",
