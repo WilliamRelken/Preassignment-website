@@ -1,12 +1,7 @@
 const express = require('express');
 const app = express();
 
-app.get('/adminlogin', (req, res) => {
-    res.send({
-        hi: "there",
-        how: "are you"
-    });
-});
+require('./routes/adminLoginRoutes')(app);
 
 app.get('/', (req, res) => {
     res.send({
