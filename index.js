@@ -1,7 +1,10 @@
 const express = require('express');
 const app = express();
 
+//grabs the route files and immediately passes the express variable
+require('./routes/landing')(app);
 require('./routes/adminLoginRoutes')(app);
+
 
 app.get('/', (req, res) => {
     res.send({
