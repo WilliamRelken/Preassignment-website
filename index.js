@@ -5,6 +5,7 @@ const path = require('path');
 const cookieSession = require('cookie-session');
 const keys = require('./config/keys');
 const app = express();
+const Admins = require('./models/Admin');
 
 app.use(
     cookieSession({
@@ -23,7 +24,7 @@ app.use(express.static(path.resolve(__dirname, './client/build')));
 
 //grabs the route files and immediately passes the express variable
 require('./routes/landing')(app);
-require('./routes/adminLoginRoutes')(app);
+require('./routes/adminLoginRoutes')(app, Admins);
 
 
 

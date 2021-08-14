@@ -3,12 +3,14 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
-  const [data, setData] = React.useState(null);
-  
-  React.useEffect(() => {
-    fetch('/landing')
-        .then((res) => res.json())
-        .then((data) => setData(data.message));
+    const [user, setData] = React.useState(null);
+    const [pass, setPass] = React.useState(null);
+    
+  //this gets a response from the adminlogin page and sets the data. testing purposes.
+    React.useEffect(() => {
+        fetch('/adminLogin')
+            .then((res) => res.json())
+            .then((user, pass) => { setData(user.username); setPass(user.password)});
     
     
     },[]);
@@ -19,7 +21,7 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <h2>Hello World</h2>
         <p>
-          {!data ? "Loading..." : data}
+                  hello {!user ? "Loading..." : user}, pass: {!pass ? "Loading..." : pass}
         </p>
         <a href="/adminLogin">
           login
