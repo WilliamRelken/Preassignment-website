@@ -1,6 +1,7 @@
 const bodyParser = require('body-parser');
 const express = require('express');
 const cors = require("cors");
+
 require('../models/Admin');
 
 
@@ -27,29 +28,8 @@ module.exports = (app, Admins, cookieSession) => {
 
         console.log("request status: " + req.statusCode + "\n response status: " + res.statusCode);
 
-
-
-
-
-        console.log(req.body.username);
-        console.log(req.body.password);
-
-        res.cookie(req.session.username = "howdy");
-        res.send();
-
-        console.log(res.cookie);
-
-    });
-
-    app.get('/adminlogin', (req, res) => {
-
-
-
-
-
-        console.log("testing")
-
-        Admins.find()
+        //query database for matching user and pass
+        Admins.find({ username: req.body.username})
             .then((result) => {
 
                 //converting result to a string to edit poor json formatting from mongoDB
@@ -59,9 +39,23 @@ module.exports = (app, Admins, cookieSession) => {
                 //converts back to JSON object
                 result = JSON.parse(result);
 
-                console.log(result);
-                res.json(result);
+                if(result.username == req.body.username && result.password == req.body.password){
+                    console.log("user id found: " + result._id);
+
+                    res.cookie("id", (req.session.id = result._id));
+                    res.cookie("username", (req.session.username = result.username));
+
+                    console.log(req.session.id);
+
+                    res.send();
+                }
+                else{
+                    console.log("invalid sign in attempt made.");
+                }
+
             });
 
     });
+
+
 }

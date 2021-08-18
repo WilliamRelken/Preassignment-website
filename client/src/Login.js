@@ -41,8 +41,6 @@ const Login = () => {
       }).then(res => res.json())
           .catch((error) => {} );
 
-      console.log(getCookie("cookie"));
-
       /*const builtJSON = "{\"username\":\"" + userName + "\", \"password\":\""  + password + "\"}";
 
 
