@@ -42,8 +42,6 @@ const Login = () => {
           .catch((error) => {} );
 
       /*const builtJSON = "{\"username\":\"" + userName + "\", \"password\":\""  + password + "\"}";
-
-
       xhttp.open("POST", "/adminlogin", true);
       xhttp.send(JSON.parse(builtJSON));
           //.then((user, pass) => { setUserName(user.username + " returned"); setPassword(user.password + " returned")});*/

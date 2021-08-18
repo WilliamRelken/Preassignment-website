@@ -4,7 +4,7 @@
 * {
   font-family: "Quicksand";
   color: #333;
-   text-decoration: none;
+  text-decoration: none;
 }
 .navbar {
   padding: 20px;
@@ -40,15 +40,90 @@
   padding-bottom: 20px;
   padding-top: 1px;
 }
-input{
-  display: block;
-  text-align: center;
+input.Login{
   margin: auto;
-  margin-bottom: 10px;
+  display: block;
+  margin-bottom: 5px;
+}
+#searchName{
+  display: inline;
+  margin-right: 10px;
+}
+#filterDrop{
+  margin-right: 100px;
+}
+#addVol{
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 8px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
 }
 .Login:hover{
   box-shadow: 5px 5px 15px grey;
 }
 button{
   border-radius: 8px;
+}
+.MngVolMenu label{
+  float:inline-start
+}
+.MngVolMenu{
+  background-color: #f1f1f1;
+  border-radius: 20px;
+  padding: 15px;
+}
+.listVol{ /*PLACEHOLDER*/
+  background-color: #f1f1f1;
+  border-radius: 20px;
+  margin-top: 2px;
+  padding: 20px;
+  padding-bottom: 100%;
+}
+.VolForm label{
+  display: inline-block;
+  width: 100px;
+  padding-right: 10px;
+}
+.VolForm input{
+  display: inline-block;
+}
+.centers label{
+  width: auto;
+}
+.information label{
+  display: inline-block;
+  width: 200px;
+}
+.information input{
+  display: inline-block;
+}
+.emergency label{
+  width: 120px;
+}
+.status label{
+  width: 250px;
+}
+#labelStatusDrop{
+  width: auto;
+}
+.VolForm{
+  background-color: #f1f1f1 ;
+  padding: 20px;
+  border-radius: 10px;
+}
+#submitAddVol{
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 8px;
+  text-decoration: none;
+  font-size: 30px;
+  border-radius: 10px;
+  float: right;
+}
+#submitAddVol:hover{
+  background-color: #409242;
 }
