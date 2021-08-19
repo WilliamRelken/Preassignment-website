@@ -4,10 +4,13 @@ const Volunteers = () => {
     return ( 
         <div className="Volunteers">
             <Navbar/>
-            <h1>Manage Volunteers</h1>
+            <div className="volTitle">
+                <h1>Manage Volunteers</h1>
+                <button id="add"><Link to='Volunteers/add'>+Add Volunteer</Link></button>
+            </div>
             <div className="MngVolMenu">
                 <label htmlFor="searchName">Search Volunteer: </label>
-                <input type="text" name="searchName" id="searchName" /> 
+                <input type="text" name="searchName" id="search" /> 
 
                 <label htmlFor="filterDrop">Filter: </label>
                 <select name="filterDrop" id="filterDrop">
@@ -18,7 +21,9 @@ const Volunteers = () => {
                     <option value="5">Inactive</option>
                     <option value="6">All</option>
                 </select>
-               <button id="addVol"><Link to='Volunteers/add'>+Add Volunteer</Link></button>
+                <input type="checkbox" id="viewMatches" name="viewMatches"/>
+                <label htmlFor="viewMatches">View Matches</label>
+               
             </div>
             <div className="listVol">
                 <h1>Placeholder for List of Volunteers</h1>

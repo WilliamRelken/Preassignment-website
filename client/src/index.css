@@ -10,8 +10,8 @@
   padding: 20px;
   display: flex;
   align-items: center;
-  max-width: 800px;
-  margin: 0 auto;
+  max-width: 1000px;
+  margin: 0 0;
   border-bottom: 1px solid #f2f2f2;
 }
 .navbar h1 {
@@ -29,9 +29,10 @@
   color: #f1356d;
 }
 .App {
-  max-width: 800px;
+  max-width: 1000px;
   margin: 40px auto;
   padding: 20px;
+  padding-bottom: 40px;
 }
 .Login{
   margin: auto;
@@ -45,21 +46,26 @@ input.Login{
   display: block;
   margin-bottom: 5px;
 }
-#searchName{
-  display: inline;
+#search{
+  display: inline-block;
   margin-right: 10px;
+  width: 200px
 }
 #filterDrop{
-  margin-right: 100px;
+  width: 200px;
 }
-#addVol{
-  background-color: #4CAF50; /* Green */
+#add{
+  background-color: #4CAF50; 
   border: none;
   color: white;
   padding: 8px;
   text-align: center;
   text-decoration: none;
   font-size: 14px;
+  float:right;
+}
+#viewMatches{
+  margin-left: 20px;
 }
 .Login:hover{
   box-shadow: 5px 5px 15px grey;
@@ -68,14 +74,31 @@ button{
   border-radius: 8px;
 }
 .MngVolMenu label{
-  float:inline-start
+  float:inline-start;
+  width: 100px;;
 }
 .MngVolMenu{
   background-color: #f1f1f1;
   border-radius: 20px;
-  padding: 15px;
+  padding: 25px;
 }
 .listVol{ /*PLACEHOLDER*/
+  background-color: #f1f1f1;
+  border-radius: 20px;
+  margin-top: 2px;
+  padding: 20px;
+  padding-bottom: 100%;
+}
+.MngOpMenu label{
+  float:inline-start;
+  width: 100px;
+}
+.MngOpMenu{
+  background-color: #f1f1f1;
+  border-radius: 20px;
+  padding: 25px;
+}
+.listOp{ /*PLACEHOLDER*/
   background-color: #f1f1f1;
   border-radius: 20px;
   margin-top: 2px;
@@ -125,5 +148,37 @@ button{
   float: right;
 }
 #submitAddVol:hover{
-  background-color: #3b7e3d;
+  background-color: #409242;
+}
+.volTitle h1{
+  display: inline;
+}
+.volTitle{
+  margin-top: 30px;
+  margin-bottom: 5px;
+}
+.opTitle h1{
+  display: inline;
+}
+.opTitle{
+  margin-top: 30px;
+  margin-bottom: 5px;
+}
+.addOpForm{
+  background-color: #f1f1f1;
+  padding: 20px;
+  border-radius: 10px;
+}
+#addOpButton{
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 8px;
+  text-decoration: none;
+  font-size: 30px;
+  border-radius: 10px;
+  float: right;
+}
+#addOpButton:hover{
+  background-color: #409242;
 }
