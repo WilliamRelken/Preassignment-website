@@ -10,6 +10,9 @@ const Login = () => {
 
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
+  const [cookie, setCookie] = useState('');
+
+  const xhttp = new XMLHttpRequest();
 
   const HandleUserName = (event) => {
     setUserName(event.target.value);
@@ -36,20 +39,16 @@ const Login = () => {
 
 
       }).then(res => res.json())
-          .catch((error) => {} )
-          .then(() =>{
-              if (getCookie("id") == ""){
-                  alert("incorrect login credentials.");
-              } else{
-                  console.log(getCookie("id"));
-                  window.location.replace("/Home");
-              }
-          });
+          .catch((error) => {} );
 
+      /*const builtJSON = "{\"username\":\"" + userName + "\", \"password\":\""  + password + "\"}";
+      xhttp.open("POST", "/adminlogin", true);
+      xhttp.send(JSON.parse(builtJSON));
+          //.then((user, pass) => { setUserName(user.username + " returned"); setPassword(user.password + " returned")});*/
+
+    console.log('Username: ' + userName);
+    console.log('Password: ' + password);
   }
-
-
-
   return (
     <div className="Login">
       <form>
@@ -66,7 +65,7 @@ const Login = () => {
       />
       </form>
       <button onClick={HandleLogin}>
-          Login
+        <Link to="/Home">Login</Link>
       </button>
     </div>
   );
