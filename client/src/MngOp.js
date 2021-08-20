@@ -1,4 +1,5 @@
 import Navbar from "./Navbar";
+import Opportunity from "./Opportunity";
 import { Link } from "react-router-dom";
 const Opportunities = () => {
     return ( 
@@ -18,12 +19,9 @@ const Opportunities = () => {
                     <option value="2">By Center</option>
                 </select>
                 
-                <input type="checkbox" id="viewMatches" name="viewMatches"/>
-                <label htmlFor="viewMatches">View Matches</label>
-               
             </div>
             <div className="listOp">
-                <h1>Placeholder for List of Opportunities</h1>
+                <Opportunity/>
             </div>
         </div>
     );

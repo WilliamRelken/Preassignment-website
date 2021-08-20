@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 const AddVolunteer = () => {
     let volunteer = {
@@ -110,10 +111,10 @@ const AddVolunteer = () => {
                             <option value="Pending Approval">Pending Approval</option>
                             <option value="Disapproved">Disapproved</option>
                             <option value="Inactive">Inactive</option>
-                            <option value="All">All</option>
                         </select>
                 </span>
             </div>
+            <button id="cancelAddVol"><Link to="/Volunteers">Cancel</Link></button> {/*PLACEHOLDER CANCEL VOLUNTEER BUTTON*/}
             <button id="submitAddVol">Submit</button> {/*PLACEHOLDER SUBMIT VOLUNTEER BUTTON*/}
         </div>
     );
