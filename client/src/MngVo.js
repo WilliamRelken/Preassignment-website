@@ -1,5 +1,6 @@
 import Navbar from "./Navbar";
 import {Link} from 'react-router-dom';
+import Volunteer from "./Volunteer";
 const Volunteers = () => {
     return ( 
         <div className="Volunteers">
@@ -21,12 +22,9 @@ const Volunteers = () => {
                     <option value="5">Inactive</option>
                     <option value="6">All</option>
                 </select>
-                <input type="checkbox" id="viewMatches" name="viewMatches"/>
-                <label htmlFor="viewMatches">View Matches</label>
-               
             </div>
             <div className="listVol">
-                <h1>Placeholder for List of Volunteers</h1>
+                <Volunteer/>
             </div>
         </div>    
     );

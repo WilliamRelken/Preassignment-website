@@ -5,6 +5,8 @@ import Opportunities from './MngOp';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import AddVolunteer from './AddVol';
 import AddOpportunities from './AddOp';
+import VolunteerEdit from './VolEdit';
+import OpportunityEdit from './OpEdit';
 
 function App() {
   return (
@@ -23,12 +25,19 @@ function App() {
           <Route exact path="/Volunteers/add">
             <AddVolunteer/>
           </Route>
+          <Route exact path="/Volunteers/edit">
+            <VolunteerEdit/>
+          </Route>
           <Route exact path="/Opportunities">
             <Opportunities/>
           </Route>
           <Route exact path="/Opportunities/add">
             <AddOpportunities/>
           </Route>
+          <Route exact path="/Opportunities/edit">
+            <OpportunityEdit/>
+          </Route>
+
         </Switch>
       </div>
     </Router>
