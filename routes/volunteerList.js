@@ -1,10 +1,13 @@
 const express = require('express');
-const cors = require("cors");
+var cookieParser = require('cookie-parser');
 
 require('../models/Admin');
+require('../models/Volunteer');
 
 
-module.exports = (app, Volunteers, cookieSession) => {
+module.exports = (app, Admins, Volunteers, cookieSession) => {
+
+    app.use(cookieParser());
 
     // Parse URL-encoded bodies (as sent by HTML forms)
     app.use(express.urlencoded({
@@ -14,46 +17,50 @@ module.exports = (app, Volunteers, cookieSession) => {
     // Parse JSON bodies (as sent by API clients)
     app.use(express.json());
 
-    app.use(
-        cors({
-            origin: 'http://localhost:3000',
-            credentials: true
-        })
-    );
+    function getVolunteers(){
+        //make database query, send back.
+        Volunteers.find()
+            .then((result) => {
+
+                result.toArray;
+
+                console.log(result);
+
+                return result;
+            });
+    }
 
 
-
-    app.post("/volunteers", function (req, res, next) {
+        //find if user has acceptable cookie to get data
+    app.get("/listvolunteers", function (req, res, next) {
 
         console.log("request status: " + req.statusCode + "\n response status: " + res.statusCode);
 
         //query database for matching user and pass
-        Admins.find()
+        Admins.findById(req.session.id)
             .then((result) => {
 
-                //converting result to a string to edit poor json formatting from mongoDB
-                result = JSON.stringify(result);
-                //removes [] sent by mongoDB
-                result = result.slice(1, (result.length - 1));
-                //converts back to JSON object
-                result = JSON.parse(result);
+                if(JSON.stringify(result) != "[]"){
 
-                if(result.username == req.body.username && result.password == req.body.password){
-                    console.log("user id found: " + result._id);
+                    if (result._id == req.session.id) {
+                        console.log("correct id: "+ req.session.id +" sending data.");
 
-                    res.cookie("id", (req.session.id = result._id));
-                    res.cookie("username", (req.session.username = result.username));
+                        result = getVolunteers();
 
-                    console.log(req.session.id);
+                        res.body = result;
 
+                        res.send();
+
+                    } else{
+                        console.log("id issue\n id sent: " + req.session.id + "\n correct id: " + result._id);
+                    }
+                } else{
                     res.send();
-                }
-                else{
-                    console.log("invalid sign in attempt made.");
+                    console.log("incorrect id, redirecting.");
                 }
 
             });
-
     });
+
 
 }

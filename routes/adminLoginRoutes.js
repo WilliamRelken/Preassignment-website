@@ -1,6 +1,5 @@
 const bodyParser = require('body-parser');
 const express = require('express');
-const cors = require("cors");
 
 require('../models/Admin');
 
@@ -13,15 +12,6 @@ module.exports = (app, Admins, cookieSession) => {
 
     // Parse JSON bodies (as sent by API clients)
     app.use(express.json());
-
-    app.use(
-        cors({
-            origin: 'http://localhost:3000',
-            credentials: true
-        })
-    );
-
-
 
     app.post("/adminlogin", function (req, res, next) {
 
@@ -62,6 +52,5 @@ module.exports = (app, Admins, cookieSession) => {
             });
 
     });
-
 
 }

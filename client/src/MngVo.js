@@ -1,7 +1,31 @@
 import Navbar from "./Navbar";
 import {Link} from 'react-router-dom';
-import Volunteer from "./Volunteer";
+
+function getCookie(key) {
+    var b = document.cookie.match("(^|;)\\s*" + key + "\\s*=\\s*([^;]+)");
+    return b ? b.pop() : "";
+}
+
+function getVolunteers() {
+
+    fetch("/listvolunteers", {
+        method: "GET",
+        mode: "cors",
+        credentials: "include"
+
+
+    }).then(res => {
+        res.json();
+
+        console.log(JSON.stringify(res.body));
+
+
+    })
+        .catch((error) => {} );
+}
+
 const Volunteers = () => {
+
     return ( 
         <div className="Volunteers">
             <Navbar/>
@@ -22,9 +46,15 @@ const Volunteers = () => {
                     <option value="5">Inactive</option>
                     <option value="6">All</option>
                 </select>
+                <input type="checkbox" id="viewMatches" name="viewMatches"/>
+                <label htmlFor="viewMatches">View Matches</label>
+               
             </div>
             <div className="listVol">
-                <Volunteer/>
+                <h1>Volunteers</h1>
+
+                <button onClick={getVolunteers()}> Get Volunteers </button>
+
             </div>
         </div>    
     );
