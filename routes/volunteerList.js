@@ -35,8 +35,8 @@ module.exports = (app, Admins, Volunteers, cookieSession) => {
                         Volunteers.find()
                             .then((result2) => {
                                 result = result2;
-                                console.log(JSON.stringify(result));
-                                res.send(JSON.stringify(result));
+                                console.log(result);
+                                res.send(result);
                             });
 
                     } else{
