@@ -17,20 +17,6 @@ module.exports = (app, Admins, Volunteers, cookieSession) => {
     // Parse JSON bodies (as sent by API clients)
     app.use(express.json());
 
-    function getVolunteers(){
-        //make database query, send back.
-        Volunteers.find()
-            .then((result) => {
-
-                result.toArray;
-
-                console.log(result);
-
-                return result;
-            });
-    }
-
-
         //find if user has acceptable cookie to get data
     app.get("/listvolunteers", function (req, res, next) {
 
@@ -45,11 +31,13 @@ module.exports = (app, Admins, Volunteers, cookieSession) => {
                     if (result._id == req.session.id) {
                         console.log("correct id: "+ req.session.id +" sending data.");
 
-                        result = getVolunteers();
-
-                        res.body = result;
-
-                        res.send();
+                        //database query, send back.
+                        Volunteers.find()
+                            .then((result2) => {
+                                result = result2;
+                                console.log(JSON.stringify(result));
+                                res.send(JSON.stringify(result));
+                            });
 
                     } else{
                         console.log("id issue\n id sent: " + req.session.id + "\n correct id: " + result._id);

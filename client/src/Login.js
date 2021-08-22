@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import { Link } from 'react-router-dom'
+//import { Link } from 'react-router-dom'
 
 function getCookie(key) {
     var b = document.cookie.match("(^|;)\\s*" + key + "\\s*=\\s*([^;]+)");
@@ -18,7 +18,7 @@ const Login = () => {
     setPassword(event.target.value);
   }
   const HandleLogin = (event) => {
-      const builtJSON = "{\"username\":\"" + userName + "\", \"password\":\""  + password + "\"}";
+      //const builtJSON = "{\"username\":\"" + userName + "\", \"password\":\""  + password + "\"}";
 
       fetch("/adminlogin", {
           method: "POST",

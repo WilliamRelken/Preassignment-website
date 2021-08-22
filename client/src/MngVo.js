@@ -8,6 +8,12 @@ function getCookie(key) {
 
 function getVolunteers() {
 
+
+
+}
+
+const Volunteers = () => {
+
     fetch("/listvolunteers", {
         method: "GET",
         mode: "cors",
@@ -15,18 +21,15 @@ function getVolunteers() {
 
 
     }).then(res => {
-        res.json();
-
-        console.log(JSON.stringify(res.body));
-
-
+        res.json().then(r => {
+            console.log(JSON.stringify(r));
+        });
     })
-        .catch((error) => {} );
-}
 
-const Volunteers = () => {
+        .catch((error) => {
+        });
 
-    return ( 
+    return (
         <div className="Volunteers">
             <Navbar/>
             <div className="volTitle">
@@ -35,7 +38,7 @@ const Volunteers = () => {
             </div>
             <div className="MngVolMenu">
                 <label htmlFor="searchName">Search Volunteer: </label>
-                <input type="text" name="searchName" id="search" /> 
+                <input type="text" name="searchName" id="search"/>
 
                 <label htmlFor="filterDrop">Filter: </label>
                 <select name="filterDrop" id="filterDrop">
@@ -48,15 +51,15 @@ const Volunteers = () => {
                 </select>
                 <input type="checkbox" id="viewMatches" name="viewMatches"/>
                 <label htmlFor="viewMatches">View Matches</label>
-               
-            </div>
-            <div className="listVol">
-                <h1>Volunteers</h1>
-
-                <button onClick={getVolunteers()}> Get Volunteers </button>
 
             </div>
-        </div>    
+            <div className="listVol" onLoad={getVolunteers()}>
+
+
+
+
+            </div>
+        </div>
     );
 }
  
