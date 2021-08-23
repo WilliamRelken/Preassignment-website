@@ -8,6 +8,8 @@ class Volunteers extends Component {
         super(props);
         this.state = {
             volunteers: [],
+            filters: [],
+            nameSearch: [""]
         };
     }
 
@@ -20,10 +22,31 @@ class Volunteers extends Component {
             .then((volunteers) => this.setState({ volunteers }));
     }
 
-    render() {
+    listVolunteers = () => {
         let vol = this.state.volunteers;
+        let name = JSON.stringify(this.state.nameSearch).toUpperCase();
 
-        const listItems = vol.map((d) => <li key={d._id}>{d.fname} {d.lname} | Approval Status: {d.approval_status} <button> EDIT </button></li>);
+
+        let results = vol.reduce(function(filtered, option) {
+            let fname = JSON.stringify(option.fname).toUpperCase();
+            let lname = JSON.stringify(option.lname).toUpperCase();
+
+            //fname = fname.slice(0,(name.length - 1));
+            //console.log(fname +" | " + fname + " | " + name.length);
+
+            if (fname.match(name) || lname.match(name) || name == "") {
+
+                filtered.push(option);
+            }
+            return filtered;
+        }, []);
+
+        const listItems = results.map((d) => <li key={d._id}>{d.fname} {d.lname} | Approval Status: {d.approval_status} <button> EDIT </button></li>);
+
+        return listItems;
+    }
+
+    render() {
 
         return (
             <div className="Volunteers">
@@ -34,7 +57,7 @@ class Volunteers extends Component {
                 </div>
                 <div className="MngVolMenu">
                     <label htmlFor="searchName">Search Volunteer: </label>
-                    <input type="text" name="searchName" id="search"/>
+                    <input type="text" name="searchName" id="search" onChange={(e) => this.setState({"nameSearch": e.target.value})}/>
 
                     <label htmlFor="filterDrop">Filter: </label>
                     <select name="filterDrop" id="filterDrop">
@@ -51,7 +74,7 @@ class Volunteers extends Component {
                 </div>
                 <div className="listVol">
 
-                    {listItems}
+                    {this.listVolunteers()}
 
                 </div>
             </div>
