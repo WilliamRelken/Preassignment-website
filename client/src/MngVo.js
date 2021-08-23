@@ -9,7 +9,7 @@ class Volunteers extends Component {
         this.state = {
             volunteers: [],
             filters: [],
-            nameSearch: [""]
+            nameSearch: []
         };
     }
 
@@ -31,10 +31,17 @@ class Volunteers extends Component {
             let fname = JSON.stringify(option.fname).toUpperCase();
             let lname = JSON.stringify(option.lname).toUpperCase();
 
-            //fname = fname.slice(0,(name.length - 1));
-            //console.log(fname +" | " + fname + " | " + name.length);
+            fname = fname.slice(1,(name.length -1));
+            lname = lname.slice(1,(name.length -1));
 
-            if (fname.match(name) || lname.match(name) || name == "") {
+
+            name = name.slice(1,(name.length -1));
+
+
+            console.log(fname +" | " + fname + " | " + name);
+            console.log(fname.search(name) +" | " + lname.search(name) + " | " + name.length);
+
+            if (fname.indexOf(name) >= 0 || lname.indexOf(name) >= 0 || name == "") {
 
                 filtered.push(option);
             }
