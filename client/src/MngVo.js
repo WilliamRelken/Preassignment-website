@@ -8,7 +8,7 @@ class Volunteers extends Component {
         super(props);
         this.state = {
             volunteers: [],
-            filters: [],
+            filters: "ALL",
             nameSearch: []
         };
     }
@@ -25,35 +25,38 @@ class Volunteers extends Component {
     listVolunteers = () => {
         let vol = this.state.volunteers;
         let name = JSON.stringify(this.state.nameSearch).toUpperCase();
+        let filter = JSON.stringify(this.state.filters).toUpperCase();
+        console.log(filter);
+        
         name = name.slice(1,(name.length -1));
 
         let results = vol.reduce(function(filtered, option) {
             let fname = JSON.stringify(option.fname).toUpperCase();
             let lname = JSON.stringify(option.lname).toUpperCase();
-
-            console.log(fname);
-            console.log(lname);
+            let status = JSON.stringify(option.approval_status).toUpperCase();
+            //console.log(fname);
+            //console.log(lname);
             //fname = fname.slice(1,(name.length -1));
             //lname = lname.slice(1,(name.length -1));
             if(name.includes(" ")){
                 let searchNames = name.split(" ", 2);
-                console.log(searchNames);
+                //console.log(searchNames);
                 let firstSearchName = searchNames[0];
                 let lastSearchName = searchNames[1];
-                console.log(firstSearchName);
-                console.log(lastSearchName);
-
-                if (fname.includes(firstSearchName) && lname.includes(lastSearchName) || name == "") {
+                //console.log(firstSearchName);
+                //console.log(lastSearchName);
+                if (((fname.includes(firstSearchName) && lname.includes(lastSearchName)) || name == "") && ((filter.includes("ALL")) ? true:status.includes(filter))) {
 
                     filtered.push(option);
                 }
             }
             
 
-            console.log(fname +" | " + fname + " | " + name);
-            console.log(fname.search(name) +" | " + lname.search(name) + " | " + name.length);
-
-            if (fname.includes(name) || lname.includes(name) || name == "") {
+            //console.log(fname +" | " + fname + " | " + name);
+            //console.log(fname.search(name) +" | " + lname.search(name) + " | " + name.length);
+            console.log(status);
+            console.log(filter);
+            if ((fname.includes(name) || lname.includes(name) || name == "") && ((filter.includes("ALL")) ? true:status.includes(filter))) {
 
                 filtered.push(option);
             }
@@ -73,6 +76,7 @@ class Volunteers extends Component {
     }
 
     render() {
+       
 
         return (
             <div className="Volunteers">
@@ -86,13 +90,13 @@ class Volunteers extends Component {
                     <input type="text" name="searchName" id="search" onChange={(e) => this.setState({"nameSearch": e.target.value})}/>
 
                     <label htmlFor="filterDrop">Filter: </label>
-                    <select name="filterDrop" id="filterDrop">
-                        <option value="1">Approved/Pending Approval</option>
-                        <option value="2">Approved</option>
-                        <option value="3">Pending Approval</option>
-                        <option value="4">Disapproved</option>
-                        <option value="5">Inactive</option>
-                        <option value="6">All</option>
+                    <select name="filterDrop" id="filterDrop" defaultValue="All" onChange={(e) => this.setState({"filters": e.target.value})}>
+                        <option value="Approved/Pending Approval">Approved/Pending Approval</option>
+                        <option value="Approved">Approved</option>
+                        <option value="Pending Approval">Pending Approval</option>
+                        <option value="Disapproved">Disapproved</option>
+                        <option value="Inactive">Inactive</option>
+                        <option value="All">All</option>
                     </select>
                     <input type="checkbox" id="viewMatches" name="viewMatches"/>
                     <label htmlFor="viewMatches">View Matches</label>
