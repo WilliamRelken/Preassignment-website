@@ -14,9 +14,20 @@ const volunteerSchema = new Schema({
         required: true
     },
     pref_centers: {
-        type:'String',
-        required: true,
-        default: 'any'
+
+        north: {
+            type: 'Boolean'
+        },
+        east: {
+            type: 'Boolean'
+        },
+        south: {
+            type: 'Boolean'
+        },
+        west: {
+            type: 'Boolean'
+        }
+
     },
     skills: {
         type:'String',
@@ -31,9 +42,16 @@ const volunteerSchema = new Schema({
         type:'String',
         required: true
     },
-    phone: {
+    home_phone: {
         type:'String',
         required: true
+    },
+    work_phone: {
+        type:'String',
+        required: true
+    },
+    cell_phone: {
+        type:'String'
     },
     email: {
         type:'String',
@@ -51,7 +69,11 @@ const volunteerSchema = new Schema({
         type:'String',
         required: true
     },
-    emc_phone: {
+    emc_home_phone: {
+        type:'String',
+        required: true
+    },
+    emc_work_phone: {
         type:'String',
         required: true
     },

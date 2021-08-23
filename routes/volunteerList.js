@@ -20,7 +20,7 @@ module.exports = (app, Admins, Volunteers, cookieSession) => {
         //find if user has acceptable cookie to get data
     app.get("/listvolunteers", function (req, res, next) {
 
-        console.log("request status: " + req.statusCode + "\n response status: " + res.statusCode);
+        //console.log("request status: " + req.statusCode + "\n response status: " + res.statusCode);
 
         //query database for matching user and pass
         Admins.findById(req.session.id)
@@ -35,9 +35,37 @@ module.exports = (app, Admins, Volunteers, cookieSession) => {
                         Volunteers.find()
                             .then((result2) => {
                                 result = result2;
-                                console.log(result);
+                                //console.log(result);
                                 res.send(result);
                             });
+
+                    } else{
+                        console.log("id issue\n id sent: " + req.session.id + "\n correct id: " + result._id);
+                    }
+                } else{
+                    res.send();
+                    console.log("incorrect id, redirecting.");
+                }
+
+            });
+    });
+
+    app.post("/addvolunteer", function (req, res, next) {
+        Admins.findById(req.session.id)
+            .then((result) => {
+
+                if(JSON.stringify(result) != "[]"){
+
+                    if (result._id == req.session.id) {
+                        console.log("correct id: "+ req.session.id +" sending data.");
+
+
+                        //add the user to the database.
+                        //console.log(req.body);
+                        const delVolunteer = req.body;
+
+                        Volunteers.create(delVolunteer);
+
 
                     } else{
                         console.log("id issue\n id sent: " + req.session.id + "\n correct id: " + result._id);
