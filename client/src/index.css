@@ -182,3 +182,39 @@ button{
 #addOpButton:hover{
   background-color: #409242;
 }
+.Volunteer h3{
+  display: inline-block;
+  text-decoration: underline;
+  width: 280px;
+}
+.Volunteer p{
+  display: inline;
+  
+}
+.Volunteer{
+  background-color: rgb(214, 214, 214);
+  border-radius: 10px;
+  padding-left: 10px;
+  margin-bottom: 2px;
+}
+.Volunteer button{
+  align-content: center;
+  float: right;
+  margin-top: 12px;
+  margin-right: 20px;
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+}
+#VolViewMatch{
+  background-color: royalblue;
+}
+#VolViewMatch:Hover{
+  background-color: rgb(59, 93, 196);
+}
+#VolEdit{
+  background-color: rgb(145, 145, 145);
+}
+#VolEdit:Hover{
+  background-color:rgb(122, 122, 122)
+}

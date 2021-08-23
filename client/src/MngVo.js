@@ -25,30 +25,49 @@ class Volunteers extends Component {
     listVolunteers = () => {
         let vol = this.state.volunteers;
         let name = JSON.stringify(this.state.nameSearch).toUpperCase();
-
+        name = name.slice(1,(name.length -1));
 
         let results = vol.reduce(function(filtered, option) {
             let fname = JSON.stringify(option.fname).toUpperCase();
             let lname = JSON.stringify(option.lname).toUpperCase();
 
-            fname = fname.slice(1,(name.length -1));
-            lname = lname.slice(1,(name.length -1));
+            console.log(fname);
+            console.log(lname);
+            //fname = fname.slice(1,(name.length -1));
+            //lname = lname.slice(1,(name.length -1));
+            if(name.includes(" ")){
+                let searchNames = name.split(" ", 2);
+                console.log(searchNames);
+                let firstSearchName = searchNames[0];
+                let lastSearchName = searchNames[1];
+                console.log(firstSearchName);
+                console.log(lastSearchName);
 
+                if (fname.includes(firstSearchName) && lname.includes(lastSearchName) || name == "") {
 
-            name = name.slice(1,(name.length -1));
-
+                    filtered.push(option);
+                }
+            }
+            
 
             console.log(fname +" | " + fname + " | " + name);
             console.log(fname.search(name) +" | " + lname.search(name) + " | " + name.length);
 
-            if (fname.indexOf(name) >= 0 || lname.indexOf(name) >= 0 || name == "") {
+            if (fname.includes(name) || lname.includes(name) || name == "") {
 
                 filtered.push(option);
             }
+
             return filtered;
         }, []);
 
-        const listItems = results.map((d) => <li key={d._id}>{d.fname} {d.lname} | Approval Status: {d.approval_status} <button> EDIT </button></li>);
+        const listItems = results.map((d) => 
+        <div key={d._id}className="Volunteer">
+            <h3>{d.fname + " " + d.lname}</h3>
+            <p>Approval Status: {d.approval_status}</p>
+            <button id="VolViewMatch">View Matches</button>
+            <button id="VolEdit"><Link to="/Volunteers/edit">Edit</Link></button>
+        </div>);
 
         return listItems;
     }
